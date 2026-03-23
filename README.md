@@ -8,7 +8,7 @@ Currently implemented:
 - Deutsch Algorithm
 - Deutsch-Jozsa Algorithm for two-bit input functions
 - Bernstein-Vazirani Algorithm
-- Phase kickback demonstration
+- Phase-kickback demonstration
 
 Run using
   python deutsch.py,
