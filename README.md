@@ -9,6 +9,7 @@ Currently implemented:
 - Bernstein-Vazirani Algorithm
 - Phase-kickback demonstration
 - Quantum Fourier Transform (QFT) demonstration (n = 4 / N = 16)
+- Quantum Phase Estimation (QPE) for a single qbit
 
 Run using
   python deutsch.py,
@@ -16,4 +17,5 @@ Run using
   python bernstein-vazirani.py,
   python phase-kickback.py,
   python qft.py
+  python qpe_single_qbit.py
 in an environment providing qiskit.
