@@ -10,6 +10,7 @@ Currently implemented:
 - Phase-kickback demonstration
 - Quantum Fourier Transform (QFT) demonstration (n = 4 / N = 16)
 - Quantum Phase Estimation (QPE) for a single qbit
+- Amplitude amplification for a single "good state"
 
 Run using
   python deutsch.py,
@@ -18,4 +19,5 @@ Run using
   python phase-kickback.py,
   python qft.py
   python qpe_single_qbit.py
+  python amplitude_amplification.py
 in an environment providing qiskit.
