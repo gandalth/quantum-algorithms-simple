@@ -24,13 +24,13 @@ def main():
     Limitations:
     - Up to 3 qbits
     - Random search
-    - Ansatz well-suited for real-valued Hamiltonians only.
-      Including Pauli-Y terms will yield large errors.
     """)
 
     n, H_terms = get_user_input()
 
     H = build_hamiltonian(H_terms)
+
+    is_complex = contains_Y(H_terms)
 
     # Exact solution
     eigvals, _ = np.linalg.eigh(H)
@@ -42,13 +42,19 @@ def main():
     best_theta = None
     best_energy = 1e9
 
-    iterations = 3000
+    iterations = 10000
 
-    print("\nRunning VQE...")
+    if is_complex:
+        print("\nRunning VQE for complex-valued Hamiltonians.")
+    else:
+        print("\nRunning VQE restricted to real-valued Hamiltonians.")
 
     for i in range(iterations):
-        theta = np.random.uniform(-np.pi, np.pi, 2 * n)
-        e = energy(theta, H, n)
+        if is_complex:
+            theta = np.random.uniform(-np.pi, np.pi, 4 * n)
+        else:
+            theta = np.random.uniform(-np.pi, np.pi, 2 * n)
+        e = energy(theta, H, n, is_complex)
 
         if e < best_energy:
             best_energy = e
@@ -65,7 +71,7 @@ def main():
     """)
 
     # Final state
-    qc = create_ansatz(n, best_theta)
+    qc = create_ansatz(n, best_theta, is_complex)
     sv = Statevector(qc)
 
     print("\nFinal statevector:")
@@ -90,29 +96,41 @@ def build_hamiltonian(terms):
         H += coeff * op
 
     return H
-
-# Note: This ansatz is only well-suited for real-valued Hamiltonians
-# yielding poor performance on complex Hamiltonians
-def create_ansatz(n, theta):
+def create_ansatz(n, theta, is_complex):
     qc = QuantumCircuit(n)
 
-    # Layer 1
-    for i in range(n):
-        qc.ry(theta[i], i)
+    if is_complex:
+        # Layer 1
+        for i in range(n):
+            qc.ry(theta[i], i)
+            qc.rz(theta[n + i], i)
 
-    # Entanglement
-    for i in range(n - 1):
-        qc.cx(i, i + 1)
+        # Entanglement
+        for i in range(n - 1):
+            qc.cx(i, i + 1)
 
-    # Layer 2
-    for i in range(n):
-        qc.ry(theta[n + i], i)
+        # Layer 2
+        for i in range(n):
+            qc.ry(theta[2*n + i], i)
+            qc.rz(theta[3*n + i], i)
+
+    else:
+        # Layer 1
+        for i in range(n):
+            qc.ry(theta[i], i)
+
+        # Entanglement
+        for i in range(n - 1):
+            qc.cx(i, i + 1)
+
+        # Layer 2
+        for i in range(n):
+            qc.ry(theta[n + i], i)
 
     return qc
 
-
-def energy(theta, H, n):
-    qc = create_ansatz(n, theta)
+def energy(theta, H, n, is_complex):
+    qc = create_ansatz(n, theta, is_complex)
     sv = Statevector(qc)
     svd = sv.data
     return np.real(np.conj(svd) @ (H @ svd))
@@ -154,6 +172,8 @@ def get_user_input():
 
     return n, terms
 
+def contains_Y(terms):
+    return any('Y' in p for _, p in terms)
 
 
 if __name__ == "__main__":

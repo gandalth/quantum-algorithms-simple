@@ -11,8 +11,7 @@ Currently implemented:
 - Quantum Fourier Transform (QFT) demonstration (n = 4 / N = 16)
 - Quantum Phase Estimation (QPE) for a single qbit
 - Amplitude amplification for a single "good state"
-- Variational Quantum Eigensolver (VQE),
-  for up to 3 qbits and real-valued Hamiltonians
+- Variational Quantum Eigensolver (VQE) for up to 3 qbits
 
 Run using
   python deutsch.py,
