@@ -100,7 +100,7 @@ state reads 1/sqrt(2) * ((-1)^{f(0)}|0> + (-1)^{f(1)}|1>).
 
 Run the algorithm using
 ```
-python phase-kickback.py
+python phase_kickback.py
 ```
 
 ## Other algorithm descriptions TBD
