@@ -35,7 +35,7 @@ def main():
     p0 = sum(v for k, v in probs.items() if k[-1:] == '0')  # first qubit
 
     # Two .h() and one .cp() yield P(0) = |0.5 * (1 + exp(i*ang)|^2
-    # Rewriting exp(i*x) = cos(x) + i*sin(x) yields
+    # Use exp(i*x) = cos(x) + i*sin(x) to solve for ang.
     ang_est = np.arccos(2 * p0 - 1)
 
     print(f"Estimated angle: {ang_est}")
