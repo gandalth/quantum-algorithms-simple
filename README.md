@@ -90,7 +90,8 @@ Phase kickback refers to the effect that, in a controlled unitary
 operation, a phase applied to the target qubit can be transferred to
 the control qubit if the target is in an eigenstate of that operation.
 This allows phase information to be encoded in control qubits and is
-used in algorithms such as the Deutsch Algorithm or Bernstein–Vazirani Algorithm.
+used in algorithms such as the Deutsch Algorithm or Bernstein–Vazirani
+Algorithm.
 
 Our implementation shows the phase applied to the controlling qbit's
 states |0> and |1> explicitly. It lets the user choose the function to
@@ -153,9 +154,9 @@ alternates between an oracle, which marks the searched / good states
 via a phase flip, and a diffusion operator, which amplifies their
 amplitudes by reflecting the state about the average. Assuming only
 one good state, this operation can be understood as a rotation towards
-the searched states in sqrt(N) steps, with N being the total number of
-states. Compared to classical search algorithms, amplitude
-amplification provides a quadratic speedup (O(sqrt(N)) over O(N)).
+that state in sqrt(N) steps, with N being the total number of
+states. Compared to classical search algorithms, Amplitude
+Amplification provides a quadratic speedup (O(sqrt(N)) over O(N)).
 
 Our implementation uses exactly one good state that the user
 defines. It shows the probabilities of the qbit states over the
@@ -167,4 +168,19 @@ Run the algorithm using
 python amplitude_amplification.py
 ```
 
-## Other algorithm descriptions TBD
+## Variational Quantum Eigensolver (VQE)
+
+A Variational Quantum Eigensolver (VQE) is a hybrid quantum-classical
+algorithm that finds the minimum energy (ground state) of a
+Hamiltonian.  It is widely used in applications such as quantum
+chemistry and drug discovery. VQE’s potential quantum advantage lies
+in using a quantum system to efficiently represent and measure
+properties of states that would be exponentially costly to simulate
+classically.
+
+Our implementation uses random search and is limited to 3 qubits. We
+compute the exact ground state for comparison, track the VQE energy over
+iterations, and report the relative error. The Hamiltonian is specified
+as a sum of Pauli terms, and depending on whether complex coefficients
+are present, we choose either a real-valued ansatz or a complex-valued
+extension.

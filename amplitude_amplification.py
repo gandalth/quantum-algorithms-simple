@@ -7,7 +7,8 @@ def main():
     print(f"""
     The Amplitude Amplification algorithm will be challenged to find a
     secret good state s. It will use an oracle marking the good state
-    and diffusion in a loop with max_iter = 15.
+    and diffusion in a loop with a maximum number of iterations and
+    a threshold-based early stopping criteria.
     """)
 
     s = input(f"Provide the secret s as a string of 0s and 1s: ")
@@ -55,7 +56,6 @@ def create_oracle(target):
     qc = QuantumCircuit(n)
 
     for i, bit in enumerate(target):
-        print(f"i {i}, bit {bit}")
         if bit == '0':
             qc.x(n - 1 - i)
 
