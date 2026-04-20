@@ -184,3 +184,8 @@ iterations, and report the relative error. The Hamiltonian is specified
 as a sum of Pauli terms, and depending on whether complex coefficients
 are present, we choose either a real-valued ansatz or a complex-valued
 extension.
+
+Run the algorithm using
+```
+python vqe.py
+```
