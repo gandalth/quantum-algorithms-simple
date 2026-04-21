@@ -24,7 +24,7 @@ https://quantum.cloud.ibm.com/docs/en/guides/install-qiskit.
 
 ## Deutsch Algorithm
 
-The Deutsch Algorithm is the most simple algorithm to demonstrate the
+The Deutsch Algorithm is the simplest algorithm to demonstrate the
 quantum computer's advantage.  It categorizes one-bit-input
 one-bit-output functions into two subsets: functions with constant
 output (e.g., f(x) = 1) and functions with balanced output (e.g., f(x)
