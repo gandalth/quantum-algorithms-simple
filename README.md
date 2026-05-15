@@ -66,13 +66,14 @@ Run the algorithm using
 python deutsch-jozsa.py
 ```
 
-## Bernstein-Vazirani Algorithm
+## Deutsch-Jozsa algorithm applied to Bernstein-Vazirani Problem
 
-The Bernstein-Vazirani Algorithm demonstrates the advantage of quantum
+The Bernstein-Vazirani Problem demonstrates the advantage of quantum
 computers by efficiently recovering a secret bitstring s of length
-n. It achieves this by evaluating an oracle for the function
-XOR_{i=0}^{n-1}(x_i * s_i) exactly once. This is remarkable, as a
-classical algorithm would require n evaluations of this function.
+n. It achieves this by using the Deutsch-Jozsa algorithm for a special
+oracle function, namely XOR_{i=0}^{n-1}(x_i * s_i) exactly once. This
+is remarkable, as a classical algorithm would require n evaluations of
+this function.
 
 Our implementation lets the user enter a secret binary string and
 builds the corresponding oracle which is opaque to the

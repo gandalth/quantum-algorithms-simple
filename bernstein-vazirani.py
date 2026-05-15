@@ -1,19 +1,19 @@
-# Implementation of Bernstein-Vazirani's algorithm for use with qiskit.
-# We use state vectors and do not require access to a quantum
-# simulator or backend-computer.
-# Our goal is to make this as simple as possible such that users
-# can have an easy first interaction with quantum algorithms.
+# Implementation of Deutsch-Jozsa's algorithm to the
+# Bernstein-Vazirani problem for use with qiskit.  We use state
+# vectors and do not require access to a quantum simulator or
+# backend-computer.  Our goal is to make this as simple as possible
+# such that users can have an easy first interaction with quantum
+# algorithms.
 
 from qiskit import *
 from qiskit.quantum_info import Statevector
 import sys
 
 def main():
-    print(f"""
-    The Bernstein-Vazirani algorithm will be challenged to find a
-    secret bitstring s. It will use only one call to the quantum
-    implementation of f(x) (oracle), with f(x) = xor_over_i x_i * s_i .
-    """)
+    print(f""" The Bernstein-Vazirani problem is to find a secret
+    bitstring s. It will use only one call to the quantum
+    implementation of f(x) (oracle), with f(x) = xor_over_i x_i * s_i
+    .  """)
 
     s = input(f"Provide the secret s as a string of 0s and 1s: ")
     if s and set(s) <= {'0', '1'}:
