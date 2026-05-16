@@ -10,7 +10,7 @@ Currently implemented:
 - Bernstein-Vazirani Algorithm
 - Phase Kickback
 - Quantum Fourier Transform (QFT) demonstration (n = 4 / N = 16)
-- Quantum Phase Estimation (QPE) for a single qbit
+- Quantum Phase Estimation (QPE) using a single qbit
 - Amplitude Amplification for a single "good state"
 - Variational Quantum Eigensolver (VQE) for up to 3 qbits
 
@@ -133,15 +133,20 @@ interest as it serves as a component in many quantum algorithms which
 are becoming increasingly popular (e.g. Shor's Algorithm or Quantum
 Counting). In essence, QPE is used to estimate the phase associated
 with an eigenvalue of a unitary operator by encoding it into a quantum
-state and extracting it via interference and measurement. Note: this "uses"
-phase kickback as observed before.
+state and extracting it via interference and measurement.
+Note: QPE makes use of the phase kickback phenomenon.
 
-In our implementation we choose the controlled-phase operator as a an
+In our implementation we choose the controlled phase operator as an
 easy example of a unitary operator. We prepare the target qbit in |1>
 state, which is an eigenstate of this operator. The user can choose
-the angle of the operator and can observe how QPE uses the
-probabibilites of the controlling qbits state vector to infer the
-angle.
+the angle the operator applies in the range [0;pi[ and observe how QPE
+uses the probabilities of the controlling qbits state vector to infer
+the angle.  Note that it is the limited range of the angle which
+simplifies the problem such that it can be solved with a single
+controlling qbit without ambiguity. The problem becomes much more
+interesting and real without this limitation. In that case the number
+of qbits, along wih repeated application of the operator, determine
+the precision with which the phase can be estimated.
 
 Run the algorithm using
 ```
