@@ -107,11 +107,12 @@ python phase_kickback.py
 
 ## Quantum Fourier Transformation (QFT)
 
-Quantum Fourier Transformation (QFT) is the quantum analogue of
-Discrete Fourier Transformation (DFT). It works on qbits and is of
-practical interest due to two reasons: It is used as a component in
-many emerging real-world applications, and moreover, it requires lower
-complexity than both DFT and Fast Fourier Transformation (FFT).
+Quantum Fourier Transformation (QFT) is the Discrete Fourier
+Transformation (DFT) used as a quantum operation. It works on qbits
+and is of practical interest due to two reasons: It is used as a
+component in many emerging real-world applications, and moreover, it
+requires lower complexity than both DFT and Fast Fourier
+Transformation (FFT).
 
 Our implementation uses n = 4 qbits and lets the user choose from four
 input signals to illustrate the basic correspondences of QFT. There
