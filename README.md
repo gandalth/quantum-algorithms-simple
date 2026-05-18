@@ -11,7 +11,7 @@ Currently implemented:
 - Phase Kickback
 - Quantum Fourier Transform (QFT) demonstration (n = 4 / N = 16)
 - Quantum Phase Estimation (QPE) using a single qbit
-- Amplitude Amplification for a single "good state"
+- Amplitude Amplification for a single solution
 - Variational Quantum Eigensolver (VQE) for up to 3 qbits
 
 # Installation
@@ -165,10 +165,14 @@ that state in sqrt(N) steps, with N being the total number of
 states. Compared to classical search algorithms, Amplitude
 Amplification provides a quadratic speedup (O(sqrt(N)) over O(N)).
 
-Our implementation uses exactly one good state that the user
+Our implementation uses exactly one good state (the "solution") that the user
 defines. It shows the probabilities of the qbit states over the
 iterations and stops when the algorithm converges to a specific state
 or the maximum number of iterations is reached.
+
+Note that Amplitude Amplfication uses a generalization of the
+technique used in Grover's algorithm. This technique is reflection on
+two lines (which is in fact a rotation).
 
 Run the algorithm using
 ```
