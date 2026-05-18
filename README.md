@@ -137,7 +137,7 @@ with an eigenvalue of a unitary operator by encoding it into a quantum
 state and extracting it via interference and measurement.
 Note: QPE makes use of the phase kickback phenomenon.
 
-In our implementation we choose the controlled phase operator as an
+In our implementation we choose the controlled-phase gate as an
 easy example of a unitary operator. We prepare the target qbit in |1>
 state, which is an eigenstate of this operator. The user can choose
 the angle the operator applies in the range [0;pi[ and observe how QPE
