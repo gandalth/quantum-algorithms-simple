@@ -46,13 +46,18 @@ it will report "constant output" or "balanced output".
 The figure shows a schematic overview of our implementation for the Deutsch
 Algorithm. Without presenting a detailed analysis, we point out that we use
 an X-Gate to flip the lower bit and Hadamard gates to prepare qbits in superposition
-states |+> and |->, respectively. The unitary query gate U_f is the oracle opaque
-to the algorithm. The output is provided by measuring the upper qbit.
+states |+> and |->, respectively. The output to decide on whether f(x) is balanced or constant is provided by measuring
+the upper qbit. The lower qbit is not of interest and can be discarded.
 
 ![Schematic diagram for Deutsch Algorithm](resources/diagrams/deutsch.png)
 
+The oracle for the function f(x), which is opaque to the algorithm except for input and output, is
+implemented by the unitary query gate U_f, as shown in the figure below. Denoting its inputs as |x> and |y>, resp., we obtain the outputs, |x> and |y \xor f(x)>. Note that the unitary query gate is information preserving.
 
-Run the algorithm using
+![query_model](resources/diagrams/query_model.png)
+
+
+Run the script using
 ```
 python deutsch.py
 ```
@@ -76,7 +81,7 @@ representing the selected function and the algorithm will evaluate it
 once. Based on the outcome it will report "constant output" or
 "balanced output".
 
-Run the algorithm using
+Run the script using
 ```
 python deutsch-jozsa.py
 ```
@@ -96,7 +101,7 @@ algorithm. After evaluating the oracle once, the algorithm will
 recover the correct bitstring.  We suggest to start with strings of 8
 bits length and increase the length step by step.
 
-Run the algorithm using
+Run the script using
 ```
 python bernstein-vazirani.py
 ```
@@ -119,7 +124,7 @@ state reads 1/sqrt(2) * ((-1)^{f(0)}|0> + (-1)^{f(1)}|1>). Informally
 speaking, the function values f(0) and f(1) "kick back" into the phase
 of |0> and |1> state, respectively.
 
-Run the algorithm using
+Run the script using
 ```
 python phase_kickback.py
 ```
@@ -141,7 +146,7 @@ size. The other two possible input signals are uniform superpositions
 with a phase ramp of constant step size. These input signals will
 result in amplitude spikes at the output of the QFT.
 
-Run the algorithm using
+Run the script using
 ```
 python qft.py
 ```
@@ -168,7 +173,7 @@ interesting and real without this limitation. In that case the number
 of qbits, along wih repeated application of the operator, determine
 the precision with which the phase can be estimated.
 
-Run the algorithm using
+Run the script using
 ```
 python qpe_single_qbit.py
 ```
@@ -193,7 +198,7 @@ Note that Amplitude Amplfication uses a generalization of the
 technique used in Grover's algorithm. This technique is reflection on
 two lines (which is in fact a rotation).
 
-Run the algorithm using
+Run the script using
 ```
 python amplitude_amplification.py
 ```
@@ -215,7 +220,7 @@ as a sum of Pauli terms, and depending on whether complex coefficients
 are present, we choose either a real-valued ansatz or a complex-valued
 extension.
 
-Run the algorithm using
+Run the script using
 ```
 python vqe.py
 ```
