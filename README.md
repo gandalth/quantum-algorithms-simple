@@ -43,6 +43,15 @@ not_x'.  The script will prepare the oracle representing the selected
 function and the algorithm will evaluate it once. Based on the outcome
 it will report "constant output" or "balanced output".
 
+The figure shows a schematic overview of our implementation for the Deutsch
+Algorithm. Without presenting a detailed analysis, we point out that we use
+an X-Gate to flip the lower bit and Hadamard gates to prepare qbits in superposition
+states |+> and |->, respectively. The unitary query gate U_f is the oracle opaque
+to the algorithm. The output is provided by measuring the upper qbit.
+
+![Schematic diagram for Deutsch Algorithm](resources/diagrams/deutsch.png)
+
+
 Run the algorithm using
 ```
 python deutsch.py
