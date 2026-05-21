@@ -31,8 +31,11 @@ output (e.g., f(x) = 1) and functions with balanced output (e.g., f(x)
 = x).  Given an unknown function as a challenge, a classical computer
 has to evaluate the function twice for the categorization
 task. Contrary, the Deutsch Algorithm on a quantum computer requires
-only one evaluation of the oracle, which is the quantum-equivalent of
-the function.
+only one evaluation. This is a quantum query algorithm. Algorithms
+based on the query model provide an oracle with input and obtain the
+corresponding output of the function. In the quantum variant, the
+oracle function is unitary. In both cases, the oracle is opaque to the
+algorithm evaluating it.
 
 Our implementation lets the user pick a challenge to the algorithm
 from these four functions: 'f(x) = 0', 'f(x) = 1', 'f(x) = x', 'f(x) =
@@ -48,9 +51,12 @@ python deutsch.py
 ## Deutsch-Jozsa Algorithm for two-bit input functions
 
 The Deutsch-Jozsa Algorithm can be understood as an extension of the
-Deutsch Algorithm to functions with multiple input bits. Again, the
-algorithm will categorize the function as "constant output" or
-"balanced output" with only one evaluation of the oracle function.
+Deutsch Algorithm to binary functions with multiple input bits and one
+output bit. Again, the algorithm will categorize the function as
+"constant output" or "balanced output" with only one evaluation of the
+oracle function (quantum query model). In this case, we are promised
+that the function is either constant or balanced. Functions which
+fulfill neither of these two properties are out of scope.
 
 Our implementation is currently restricted to two input bits. The user
 can choose from the following functions to challenge the algorithm:
@@ -73,7 +79,7 @@ computers by efficiently recovering a secret bitstring s of length
 n. It achieves this by using the Deutsch-Jozsa algorithm for a special
 oracle function, namely XOR_{i=0}^{n-1}(x_i * s_i) exactly once. This
 is remarkable, as a classical algorithm would require n evaluations of
-this function.
+the function.
 
 Our implementation lets the user enter a secret binary string and
 builds the corresponding oracle which is opaque to the
@@ -88,11 +94,12 @@ python bernstein-vazirani.py
 ## Phase Kickback
 
 Phase kickback refers to the effect that, in a controlled unitary
-operation, a phase applied to the target qubit can be transferred to
-the control qubit if the target is in an eigenstate of that operation.
-This allows phase information to be encoded in control qubits and is
-used in algorithms such as the Deutsch Algorithm or Bernstein–Vazirani
-Algorithm.
+operation, a function applied to the target qubit "kicks back" a
+function-dependent phase value onto the control qubit. This happens if
+the target qbit is an eigenvector of the unitary query gate that
+implements the function of interest. This allows phase information to
+be encoded in control qubits. It is an important phenomenon and is
+used in algorithms such as the Deutsch-Josza algorithm.
 
 Our implementation shows the phase applied to the controlling qbit's
 states |0> and |1> explicitly. It lets the user choose the function to
@@ -137,13 +144,13 @@ with an eigenvalue of a unitary operator by encoding it into a quantum
 state and extracting it via interference and measurement.
 Note: QPE makes use of the phase kickback phenomenon.
 
-In our implementation we choose the controlled-phase gate as an
-easy example of a unitary operator. We prepare the target qbit in |1>
-state, which is an eigenstate of this operator. The user can choose
-the angle the operator applies in the range [0;pi[ and observe how QPE
-uses the probabilities of the controlling qbits state vector to infer
-the angle.  Note that it is the limited range of the angle which
-simplifies the problem such that it can be solved with a single
+In our implementation we choose the controlled-phase gate as the
+easiest easy example of a unitary operator. We prepare the target qbit
+in |1> state, which is an eigenstate of this operator. The user can
+choose the angle the operator applies in the range [0;pi[ and observe
+how QPE uses the probabilities of the controlling qbits state vector
+to infer the angle.  Note that it is the limited range of the angle
+which simplifies the problem such that it can be solved with a single
 controlling qbit without ambiguity. The problem becomes much more
 interesting and real without this limitation. In that case the number
 of qbits, along wih repeated application of the operator, determine
