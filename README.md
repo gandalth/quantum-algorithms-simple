@@ -101,11 +101,14 @@ implements the function of interest. This allows phase information to
 be encoded in control qubits. It is an important phenomenon and is
 used in algorithms such as the Deutsch-Josza algorithm.
 
-Our implementation shows the phase applied to the controlling qbit's
-states |0> and |1> explicitly. It lets the user choose the function to
-be implemented by the unitary from this list: 'f(x) = 0', 'f(x) = 1',
+Our implementation does not apply a Hadamard gate after the query gate
+and explicitly shows the phase applied to the controlling qbit's
+states |0> and |1>. It lets the user choose the function to be
+implemented by the unitary from this list: 'f(x) = 0', 'f(x) = 1',
 'f(x) = x', 'f(x) = not_x'. The key insight is that the resulting
-state reads 1/sqrt(2) * ((-1)^{f(0)}|0> + (-1)^{f(1)}|1>).
+state reads 1/sqrt(2) * ((-1)^{f(0)}|0> + (-1)^{f(1)}|1>). Informally
+speaking, the function values f(0) and f(1) "kick back" into the phase
+of |0> and |1> state, respectively.
 
 Run the algorithm using
 ```
