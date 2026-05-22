@@ -39,8 +39,8 @@ algorithm evaluating it.
 
 The figure shows a schematic overview of our implementation for the
 Deutsch Algorithm. Without presenting a detailed analysis, we point
-out that we use an Pauli-$X$ Gate to flip the lower bit and $H$
-(Hadamard) gates to prepare qbits in states $\vert +\rangle$ and \vert
+out that we use an Pauli $X$ Gate to flip the lower bit and $H$
+(Hadamard) gates to prepare qbits in states $\vert +\rangle$ and $\vert
 -\rangle$, respectively. These qbits are in superposition states. This
 is one of the key enablers which allows the Deutsch algorithm to
 categorize the function with only one query. The other enabler is the
@@ -51,7 +51,7 @@ discarded.
 
 ![Schematic diagram for Deutsch Algorithm](resources/diagrams/deutsch.png)
 
-The oracle for the function f(x), which is opaque to the algorithm
+The oracle for the function $f(x)$, which is opaque to the algorithm
 except for input and output, is implemented by the unitary query gate
 $U_f$, as shown in the figure below. Denoting its inputs as $\vert
 x\rangle$ and $\vert y\rangle$, resp., we obtain the outputs $\vert
@@ -61,8 +61,8 @@ query gate is information preserving.
 ![query_model](resources/diagrams/query_model.png)
 
 Our implementation lets the user pick a challenge to the algorithm
-from these four functions: '$f(x) = 0$', '$f(x) = 1$', '$f(x) = x$',
-'$f(x) = \bar{x}$'.  The script will prepare the oracle representing
+from these four functions: $f(x) = 0$, $f(x) = 1$, $f(x) = x$,
+$f(x) = \bar{x}$.  The script will prepare the oracle representing
 the selected function and the algorithm will evaluate it once. Based
 on the outcome it will report "constant output" or "balanced output".
 
