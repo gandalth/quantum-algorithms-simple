@@ -27,8 +27,8 @@ https://quantum.cloud.ibm.com/docs/en/guides/install-qiskit.
 The Deutsch Algorithm is the simplest algorithm to demonstrate the
 quantum computer's advantage.  It categorizes one-bit-input
 one-bit-output functions into two subsets: functions with constant
-output (e.g., f(x) = 1) and functions with balanced output (e.g., f(x)
-= x).  Given an unknown function as a challenge, a classical computer
+output (e.g., $f(x) = 1$) and functions with balanced output (e.g., $f(x)
+= x$).  Given an unknown function as a challenge, a classical computer
 has to evaluate the function twice for the categorization
 task. Contrary, the Deutsch Algorithm on a quantum computer requires
 only one evaluation. This is a quantum query algorithm. Algorithms
@@ -37,24 +37,34 @@ corresponding output of the function. In the quantum variant, the
 oracle function is unitary. In both cases, the oracle is opaque to the
 algorithm evaluating it.
 
-Our implementation lets the user pick a challenge to the algorithm
-from these four functions: 'f(x) = 0', 'f(x) = 1', 'f(x) = x', 'f(x) =
-not_x'.  The script will prepare the oracle representing the selected
-function and the algorithm will evaluate it once. Based on the outcome
-it will report "constant output" or "balanced output".
-
-The figure shows a schematic overview of our implementation for the Deutsch
-Algorithm. Without presenting a detailed analysis, we point out that we use
-an X-Gate to flip the lower bit and Hadamard gates to prepare qbits in superposition
-states |+> and |->, respectively. The output to decide on whether f(x) is balanced or constant is provided by measuring
-the upper qbit. The lower qbit is not of interest and can be discarded.
+The figure shows a schematic overview of our implementation for the
+Deutsch Algorithm. Without presenting a detailed analysis, we point
+out that we use an Pauli-$X$ Gate to flip the lower bit and $H$
+(Hadamard) gates to prepare qbits in states $\vert +\rangle$ and \vert
+-\rangle$, respectively. These qbits are in superposition states. This
+is one of the key enablers which allows the Deutsch algorithm to
+categorize the function with only one query. The other enabler is the
+phase-kickback phenomenon, which we will cover below.  The output to
+decide on whether $f(x)$ is balanced or constant is provided by
+measuring the upper qbit. The lower qbit is not of interest and can be
+discarded.
 
 ![Schematic diagram for Deutsch Algorithm](resources/diagrams/deutsch.png)
 
-The oracle for the function f(x), which is opaque to the algorithm except for input and output, is
-implemented by the unitary query gate U_f, as shown in the figure below. Denoting its inputs as |x> and |y>, resp., we obtain the outputs, |x> and |y \xor f(x)>. Note that the unitary query gate is information preserving.
+The oracle for the function f(x), which is opaque to the algorithm
+except for input and output, is implemented by the unitary query gate
+$U_f$, as shown in the figure below. Denoting its inputs as $\vert
+x\rangle$ and $\vert y\rangle$, resp., we obtain the outputs $\vert
+x\rangle$ and $\vert y \oplus f(x)\rangle$. Note that the unitary
+query gate is information preserving.
 
 ![query_model](resources/diagrams/query_model.png)
+
+Our implementation lets the user pick a challenge to the algorithm
+from these four functions: '$f(x) = 0$', '$f(x) = 1$', '$f(x) = x$',
+'$f(x) = \bar{x}$'.  The script will prepare the oracle representing
+the selected function and the algorithm will evaluate it once. Based
+on the outcome it will report "constant output" or "balanced output".
 
 
 Run the script using
