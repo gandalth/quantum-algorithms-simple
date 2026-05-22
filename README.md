@@ -49,7 +49,9 @@ decide on whether $f(x)$ is balanced or constant is provided by
 measuring the upper qbit. The lower qbit is not of interest and can be
 discarded.
 
-![Schematic diagram for Deutsch Algorithm](resources/diagrams/deutsch.png)
+<p align="center">
+  <img src="resources/diagrams/deutsch.png" alt="Schematic diagram for Deutsch Algorithm">
+</p>
 
 The oracle for the function $f(x)$, which is opaque to the algorithm
 except for input and output, is implemented by the unitary query gate
@@ -58,7 +60,9 @@ x\rangle$ and $\vert y\rangle$, resp., we obtain the outputs $\vert
 x\rangle$ and $\vert y \oplus f(x)\rangle$. Note that the unitary
 query gate is information preserving.
 
-![query_model](resources/diagrams/query_model.png)
+<p align="center">
+  <img src="resources/diagrams/query_model.png" alt="Query model for function f(x)">
+</p>
 
 Our implementation lets the user pick a challenge to the algorithm
 from these four functions: $f(x) = 0$, $f(x) = 1$, $f(x) = x$,
