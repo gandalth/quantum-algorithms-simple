@@ -46,11 +46,11 @@ is one of the key enablers which allows the Deutsch algorithm to
 categorize the function with only one query. The other enabler is the
 phase-kickback phenomenon, which we will cover below.  The output to
 decide on whether $f(x)$ is balanced or constant is provided by
-measuring the upper qbit. The lower qbit is not of interest and can be
+measuring qbit 0. The lower qbit is not of interest and can be
 discarded.
 
 <p align="center">
-  <img src="resources/diagrams/deutsch.png" alt="Schematic diagram for Deutsch Algorithm">
+  <img src="resources/fig_png/deutsch.png" alt="Schematic diagram for Deutsch Algorithm">
 </p>
 
 The oracle for the function $f(x)$, which is opaque to the algorithm
@@ -61,14 +61,14 @@ x\rangle$ and $\vert y \oplus f(x)\rangle$. Note that the unitary
 query gate is information preserving.
 
 <p align="center">
-  <img src="resources/diagrams/query_model.png" alt="Query model for function f(x)">
+  <img src="resources/fig_png/query_model.png" alt="Query model for function f(x)">
 </p>
 
 Our implementation lets the user pick a challenge to the algorithm
-from these four functions: $f(x) = 0$, $f(x) = 1$, $f(x) = x$,
-$f(x) = \bar{x}$.  The script will prepare the oracle representing
-the selected function and the algorithm will evaluate it once. Based
-on the outcome it will report "constant output" or "balanced output".
+from these four functions: $f(x) = 0$, $f(x) = 1$, $f(x) = x$, $f(x) =
+\overline{x}$.  The script will prepare the oracle representing the
+selected function and the algorithm will evaluate it once. Based on
+the outcome it will report "constant output" or "balanced output".
 
 
 Run the script using
@@ -84,16 +84,24 @@ output bit. Again, the algorithm will categorize the function as
 "constant output" or "balanced output" with only one evaluation of the
 oracle function (quantum query model). In this case, we are promised
 that the function is either constant or balanced. Functions which
-fulfill neither of these two properties are out of scope.
+fulfill neither of these two properties are out of scope. Our
+implementation is currently restricted to functions with two input
+bits. The figure shows the Deutsch-Jozsa Algorithm for that case.
 
-Our implementation is currently restricted to two input bits. The user
-can choose from the following functions to challenge the algorithm:
-'f(x0,x1) = 0', 'f(x0,x1) = 1', 'f(x0,x1) = x0', 'f(x0,x1) = x1',
-'f(x0,x1) = not x0', 'f(x0,x1) = not x1', 'f(x0,x1) = x0 xor x1',
-'f(x0,x1) = not(x0 xor x1)'.  The script will prepare the oracle
+<p align="center">
+  <img src="resources/fig_png/deutsch-jozsa.png" alt="Deutsch-Jozsa Algorithm for two-bit input functions.">
+</p>
+
+
+The user can choose from the following functions to challenge the
+algorithm: $f(x0, x1) = 0$, $f(x_0, x_1) = 1$, $f(x_0, x_1) = x_0$,
+$f(x_0, x_1) = x_1$, $f(x_0, x_1) = \overline{x_0}$, $f(x_0, x_1) =
+\overline{x_1}$, $f(x_0, x_1) = x_0 \oplus x_1$, $f(x_0, x_1) =
+\overline{x_0 \oplus x_1}$.  The script will prepare the oracle
 representing the selected function and the algorithm will evaluate it
-once. Based on the outcome it will report "constant output" or
-"balanced output".
+once using qbits in superposition.  Eventually, qbit 0 and qbit 1 will
+be measured. If the probability to measure '00' is (approximately) 1,
+we report "constant output", and otherwise "balanced output".
 
 Run the script using
 ```
