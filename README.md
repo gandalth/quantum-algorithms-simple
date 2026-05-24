@@ -114,7 +114,7 @@ The Bernstein-Vazirani Problem demonstrates a quantum algorithm can
 efficiently recover a secret bitstring s of length n. It uses the
 Deutsch-Jozsa Algorithm without any modification and provides a
 specific choice for the oracle function, namely $f(x) =
-\oplus\limits_{i=0}^{n-1}x_i * s_i$. As expected from the observations
+\oplus_{i=0}^{n-1}x_i * s_i$. As expected from the observations
 on Deutsch-Jozsa, tt requires only one query to this oracle. Still,
 this is remarkable, as a classical algorithm would require n
 evaluations of the function.
