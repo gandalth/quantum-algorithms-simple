@@ -10,10 +10,10 @@ from qiskit.quantum_info import Statevector
 import sys
 
 def main():
-    print(f""" The Bernstein-Vazirani problem is to find a secret
-    bitstring s. It will use only one call to the quantum
-    implementation of f(x) (oracle), with f(x) = xor_over_i x_i * s_i
-    .  """)
+    print(f""" The Bernstein-Vazirani problem recovers a secret
+    bitstring s by using the Deutsch-Jozsa algorithm. It will use only
+    one query to the oracle, with f(x) chosen as
+    f(x) = xor_over_i x_i * s_i .  """)
 
     s = input(f"Provide the secret s as a string of 0s and 1s: ")
     if s and set(s) <= {'0', '1'}:
@@ -30,7 +30,7 @@ def main():
 
     qc.x(l)
 
-    # Create superposition |+>, |+>, and |-> by sending all through Hadamard.
+    # Create superposition |+> and |-> by sending all through Hadamard.
 
     for i in range(l + 1):
         qc.h(i)
@@ -41,7 +41,7 @@ def main():
     oracle = create_oracle(s)
     qc.compose(oracle, inplace=True)
 
-    # Send all output corresponding to x input through Hadamard.
+    # Send outputs 0 to l-1 (corresponding to input bits) through Hadamard.
     for i in range(l):
         qc.h(i)
     # The input registers now contain the hidden string s.
