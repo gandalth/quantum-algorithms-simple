@@ -132,21 +132,27 @@ python bernstein-vazirani.py
 ## Phase Kickback
 
 Phase kickback refers to the effect that, in a controlled unitary
-operation, a function applied to the target qubit "kicks back" a
-function-dependent phase value onto the control qubit. This happens if
+operation, a function applied to the target qbit "kicks back" a
+function-dependent phase value onto the control qbit. This happens if
 the target qbit is an eigenvector of the unitary query gate that
-implements the function of interest. This allows phase information to
-be encoded in control qubits. It is an important phenomenon and is
-used in algorithms such as the Deutsch-Josza algorithm.
+implements the function of interest. This allows control qbits to
+carry phase information. It is an important phenomenon and is used in
+algorithms such as the Deutsch-Josza Algorithm. The figure shows our
+implementation demonstrating phase kickback. Note that this is
+essentially the Deutsch Algorithm, but without the Hadamard gate after
+the query gate. This allows to observe the phases applied to the
+controlling qbit on the final state vector: $1/\sqrt(2) *
+((-1)^{f(0)}\vert 0\rangle + (-1)^{f(1)}\vert 1\rangle)$.
 
-Our implementation does not apply a Hadamard gate after the query gate
-and explicitly shows the phase applied to the controlling qbit's
-states |0> and |1>. It lets the user choose the function to be
-implemented by the unitary from this list: 'f(x) = 0', 'f(x) = 1',
-'f(x) = x', 'f(x) = not_x'. The key insight is that the resulting
-state reads 1/sqrt(2) * ((-1)^{f(0)}|0> + (-1)^{f(1)}|1>). Informally
-speaking, the function values f(0) and f(1) "kick back" into the phase
-of |0> and |1> state, respectively.
+<p align="center">
+  <img src="resources/fig_png/phase_kickback.png" alt="Phase kickback demonstration.">
+</p>
+
+Our script lets the user choose the function to be implemented by the
+unitary from this list: $f(x) = 0$, $f(x) = 1$, $f(x) = x$, $f(x) =
+\overline{x}$ and output the final state vector. Depending on the
+chosen function, the user can verify the phase kickback into $\vert
+0\rangle$ and $\vert 1\rangle$.
 
 Run the script using
 ```
@@ -237,7 +243,7 @@ in using a quantum system to efficiently represent and measure
 properties of states that would be exponentially costly to simulate
 classically.
 
-Our implementation uses random search and is limited to 3 qubits. We
+Our implementation uses random search and is limited to 3 qbits. We
 compute the exact ground state for comparison, track the VQE energy over
 iterations, and report the relative error. The Hamiltonian is specified
 as a sum of Pauli terms, and depending on whether complex coefficients
