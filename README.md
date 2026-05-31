@@ -141,7 +141,7 @@ algorithms such as the Deutsch-Josza Algorithm. The figure shows our
 implementation demonstrating phase kickback. Note that this is
 essentially the Deutsch Algorithm, but without the Hadamard gate after
 the query gate. This allows to observe the phases applied to the
-controlling qbit on the final state vector: $1/\sqrt(2) *
+controlling qbit on the final state vector: $1/\sqrt(2) \cdot
 ((-1)^{f(0)}\vert 0\rangle + (-1)^{f(1)}\vert 1\rangle)$.
 
 <p align="center">
@@ -192,16 +192,17 @@ state and extracting it via interference and measurement.
 Note: QPE makes use of the phase kickback phenomenon.
 
 In our implementation we choose the controlled-phase gate as the
-easiest easy example of a unitary operator. We prepare the target qbit
-in |1> state, which is an eigenstate of this operator. The user can
-choose the angle the operator applies in the range [0;pi[ and observe
-how QPE uses the probabilities of the controlling qbits state vector
-to infer the angle.  Note that it is the limited range of the angle
-which simplifies the problem such that it can be solved with a single
-controlling qbit without ambiguity. The problem becomes much more
-interesting and real without this limitation. In that case the number
-of qbits, along wih repeated application of the operator, determine
-the precision with which the phase can be estimated.
+easiest example of a unitary operator. We prepare the target qbit in
+$\vert 1\rangle$ state, which is an eigenstate of the controlled-phase
+gate. The user can choose the angle the operator applies in the range
+$\[0;\pi\[$ and observe how QPE uses the probabilities of the controlling
+qbits state vector to infer the angle.  Note that it is the limited
+range of the angle which simplifies the problem such that it can be
+solved with a single controlling qbit without ambiguity. The problem
+becomes much more interesting and real without this limitation. In
+that case the number of qbits, along wih repeated application of the
+operator, determine the precision with which the phase can be
+estimated.
 
 Run the script using
 ```
